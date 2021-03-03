@@ -2,25 +2,26 @@ import React, { useContext } from 'react';
 import { Store } from '../../store';
 import { Link } from 'react-router-dom';
 
+
 const Landing = props => {
   const { state } = useContext(Store);
 
   console.log({ state, props });
 
+
   return (
-    <div className="container valign-wrapper" style={{ height: '75vh' }}>
+    <div className="container valign-wrapper">
       <div className="row">
-        <div className="col s12 center-align">
-          <h4>
-            <b>Build</b> a login/auth app with the {' '} <span style={{ fontFamily: 'monospace' }}>MERN</span> stack
-            from scratch
+        <div className="card-panel grey lighten-1 center">
+          <h4 class="white-text">
+            Welcome to {' '} <span style={{ fontFamily: 'Dancing Script' }}>Stellar Scope</span>!
           </h4>
-          <p className="flow-text grey-text text-darken-1">
-            Create a (minimal) full-stack app with user authentication via passport and JWTs
+          <p className="flow-text white-text text-darken-1">
+            View daily horoscope readings, compatibility guidance, and more.
           </p>
           <br />
           <div className="col s6">
-            <Link to="/register" className="btn btn-large waves-effect waves-light hoverable blue accent-3" style={{
+            <Link to="/register" className="btn btn-large waves-effect waves-light hoverable purple lighten-1" style={{
               width: '140px',
               borderRadius: '3px',
               letterSpacing: '1.5px',

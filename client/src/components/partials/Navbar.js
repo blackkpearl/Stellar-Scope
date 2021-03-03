@@ -5,9 +5,9 @@ const Navbar = props => {
   return (
     <div className="navbar-fixed">
       <nav className="z-depth-0">
-        <div className="nav-wrapper white">
-          <Link to="/" className="col s5 brand-logo center black-text" style={{ fontFamily: 'monospace' }}>
-            <i className="material-icons">code</i> MERN
+        <div className="nav-wrapper grey">
+          <Link to="/" className="col s5 brand-logo center white-text" style={{ fontFamily: 'Dancing Script' }}>
+            <i className="material-icons">nightlight_round</i> Stellar Scope
           </Link>
         </div>
       </nav>

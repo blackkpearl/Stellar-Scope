@@ -24,7 +24,7 @@ const Dashboard = props => {
   };
 
   return (
-    <div className="container valign-wrapper" style={{ height: '75vh' }}>
+    <div className="container" style={{ height: '75vh' }}>
       <div className="row">
         <div className="col s12 center-align">
           <h4>
@@ -49,7 +49,55 @@ const Dashboard = props => {
           </button>
         </div>
       </div>
+      <div className="row">
+        <div class="col s4 center-align">
+          <div class="card">
+            <div class="card-image">
+              <img src="images/sample-1.jpg"/>
+              <span class="card-title">Daily Astrology</span>
+            </div>
+            <div class="card-content">
+              <p>.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s4 center-align">
+          <div class="card">
+            <div class="card-image">
+              <img src="images/sample-1.jpg"/>
+              <span class="card-title">Match Making</span>
+            </div>
+            <div class="card-content">
+              <p>.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s4 center-align">
+          <div class="card">
+            <div class="card-image">
+              <img src="images/sample-1.jpg"/>
+              <span class="card-title">Horoscope</span>
+            </div>
+            <div class="card-content">
+              <p>.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+        
+      </div>
     </div>
+
   );
 };
 
