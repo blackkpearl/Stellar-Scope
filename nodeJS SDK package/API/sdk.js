@@ -84,7 +84,6 @@ var packageMatchMakingData = (maleBirthData, femaleBirthData) => {
 };
 
 
-
 var api = {
 	
 	call: (resource, date, month, year, hour, minute, latitude, longitude, timezone, callback) => {
@@ -103,6 +102,5 @@ var api = {
 	}
 
 }
-
 
 module.exports = api;
