@@ -7,7 +7,6 @@ import { Store } from './store';
 
 import './App.css';
 
-import Navbar from './components/partials/Navbar';
 import Landing from './components/pages/Landing';
 import Register from './components/pages/Register';
 import Login from './components/pages/Login';
@@ -37,7 +36,6 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        <Navbar />
         <Route exact path="/" component={Landing} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />

@@ -33,7 +33,23 @@ const Register = props => {
   };
 
   return (
-    <div className="container">
+    <div className="container"
+      style= {{
+        width: '100%'
+      }}>
+     <div className="navbar">
+        <nav className="z-depth-0">
+          <div className="nav-wrapper grey"
+            style={{
+              background: 'rgb(238,174,202)',
+              background: 'radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)'
+            }}>
+            <Link to="/" className="col s5 brand-logo center white-text" style={{ fontFamily: 'Dancing Script' }}>
+              <i className="material-icons">nightlight_round</i> Stellar Scope
+            </Link>
+          </div>
+        </nav>
+      </div>
       <div className="row">
         <div className="col s8 offset-s2">
           <Link to="/" className="btn-flat waves-effect">
