@@ -33,17 +33,18 @@ const Dashboard = props => {
         <nav className="z-depth-0">
           <div className="nav-wrapper grey"
             style={{
-              background: 'rgb(238,174,202)',
-              background: 'radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)'
+              background: 'rgb(77,95,136)',
+              background: 'radial-gradient(circle, rgba(77,95,136,1) 0%, rgba(81,39,81,1) 35%, rgba(9,2,13,1) 100%)'
             }}>
           <button
-            className="btn btn-large waves-effect waves-light grey lighten-1"
+            className="btn medium waves-effect waves-light deep-purple lighten-2"
             style={
               {
                 width: '150px',
                 borderRadius: '3px',
                 letterSpacing: '1.5px',
                 float: 'right',
+                marginTop: '1%'
               }
             }
             onClick={onLogoutClick}>
@@ -58,64 +59,23 @@ const Dashboard = props => {
       </div>
       <div className="row">
         <div className="col s12 center-align">
-          <h4>
-            <b>Hey there,</b> {user.name.split(' ')[0]}
+          <h4 class="white-text">
+            <b class="white-text">Hey there,</b> {user.name.split(' ')[0]}
             <p className="flow-text grey-text text-darken-1">
-              Click on any card to unlock more astrology{' '}
+              Search any planet{' '}
             </p>
           </h4>
-
         </div>
       </div>
       <div className="row">
-        <div class="col s4 center-align">
-          <div class="card">
-            <div class="card-image">
-              <img src="images/sample-1.jpg"/>
-              <span class="card-title">Daily Astrology</span>
-            </div>
-            <div class="card-content">
-              <p>.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
+        <div class="input-field col s3 center-align white-text"></div>  
+        <div class="input-field col s6 center-align white-text">
+          <i class="white-text material-icons prefix">search</i>
+          <input type="text" placeholder="search" id="autocomplete-input" class="autocomplete white-text"></input>
         </div>
-
-        <div class="col s4 center-align">
-          <div class="card">
-            <div class="card-image">
-              <img src="images/sample-1.jpg"/>
-              <span class="card-title">Match Making</span>
-            </div>
-            <div class="card-content">
-              <p>.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col s4 center-align">
-          <div class="card">
-            <div class="card-image">
-              <img src="images/sample-1.jpg"/>
-              <span class="card-title">Horoscope</span>
-            </div>
-            <div class="card-content">
-              <p>.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-        
+        <div class="input-field col s16 center-align white-text"></div>
       </div>
     </div>
-
   );
 };
 
