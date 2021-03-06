@@ -20,15 +20,7 @@ const Dashboard = props => {
   }, [state, props]);
 
   const astrologyAPICall = async () => {
-    const dataRaw = {
-      day: 12,
-      month: 3,
-      year: 1992,
-      hour: 2,
-      min: 23,
-      lat: 19.132,
-      lon: 72.342,
-      tzone: 5.5
+    
     };
 
     var button = document.getElementById('btn1');
@@ -36,75 +28,21 @@ const Dashboard = props => {
     button.addEventListener('click', Search);
     function Search(event) {
       var userInputValue = document.getElementById('mySearch').value;
-      var urlBase = 'https://json.astrologyapi.com/v1/general_house_report/:planet_name'
+      var urlBase = 'https://json.astrologyapi.com/v1/general_house_report/:planet_nameg'
       if (userInputValue === null || userInputValue === '') return;
       var searchUrl = urlBase + userInputValue;
       performSearch(searchUrl);
     }
     try {
 
-      var _selectedPlanet = "Sun"
-      const response = await fetch("https://json.astrologyapi.com/v1/general_house_report/:planet_name", {
+      var _selectedPlanet = (userInputValue)
+      const response = await fetch("https://json.astrologyapi.com/v1/general_house_report/:userInputValue", {
         method: 'POST', headers: {
           "Authorization": "Basic " + btoa("615856:4833e72955dc35aaff5f4cfb7e886220"),
           "Content-Type": 'application/json'
         },
         body: JSON.stringify(dataRaw)
       });
-
-      switch (_selectedPlanet) {
-        case "Sun":
-          _selectedPlanet = response[0];
-          break;
-
-        case "Moon":
-          _selectedPlanet = response[1];
-          break;
-
-        case "Mars":
-          _selectedPlanet = response[2];
-          break;
-
-        case "Mercury":
-          _selectedPlanet = response[3];
-          break;
-
-        case "Jupiter":
-          _selectedPlanet = response[4];
-          break;
-
-        case "Venus":
-          _selectedPlanet = response[5];
-          break;
-
-        case "Saturn":
-          _selectedPlanet = response[6];
-          break;
-
-        case "Uranus":
-          _selectedPlanet = response[7];
-          break;
-
-        case "Neptune":
-          _selectedPlanet = response[8];
-          break;
-
-        case "Pluto":
-          _selectedPlanet = response[9];
-          break;
-
-        default:
-          break;
-      }
-
-      const data = await response.json();
-      setAstroData(data)
-    } catch (e) { console.log({ e }) }
-  };
-
-  useEffect(() => {
-    astrologyAPICall()
-  }, []);
 
   
   const onLogoutClick = e => {
@@ -168,7 +106,10 @@ const Dashboard = props => {
                   <i class="material-icons" >search</i>
                 </label>
               </div>
-              <button type="submit" class="input-group-addon btn deep-purple lighten-2">search</button>
+              <button type="submit" class="input-group-addon btn deep-purple lighten-2" 
+              onClick={astrologyAPICall}>
+                search
+              </button>
 
             </div>
           </form>
