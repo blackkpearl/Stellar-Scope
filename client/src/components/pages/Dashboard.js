@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 const Dashboard = props => {
   const { state, dispatch } = useContext(Store);
   const [astroData, setAstroData] = useState();
+
   const user = state.auth.user;
 
   useEffect(() => {
@@ -39,11 +40,12 @@ const Dashboard = props => {
         },
         body: JSON.stringify(dataRaw)
       });
+      // alert(JSON.stringify((response)
 
-      switch(_userInput) {
+      switch (_selectedPlanet) {
         case "Sun":
-        _selectedPlanet = response[0];
-        break;
+          _selectedPlanet = response[0];
+          break;
 
         case "Moon":
           _selectedPlanet = response[1];
@@ -80,120 +82,91 @@ const Dashboard = props => {
         case "Pluto":
           _selectedPlanet = response[9];
           break;
-          
+
         default:
-            break;}
+          break;
+      }
 
-          const data = await response.json();
-          setAstroData(data)
-      } catch (e) { console.log({ e }) }
-    };
-
-    useEffect(() => {
-      astrologyAPICall()
-    }, []);
-
-    const onLogoutClick = e => {
-      e.preventDefault();
-
-      logoutUser(props.history)(dispatch);
-    };
-
-    return (
-
-      <div className="container"
-        style={{
-          width: '100%'
-        }}>
-        <div className="navbar">
-          <nav className="z-depth-0">
-            <div className="nav-wrapper grey"
-              style={{
-                background: 'rgb(238,174,202)',
-                background: 'radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)'
-              }}>
-              <button
-                className="btn btn-large waves-effect waves-light grey lighten-1"
-                style={
-                  {
-                    width: '150px',
-                    borderRadius: '3px',
-                    letterSpacing: '1.5px',
-                    float: 'right',
-                  }
-                }
-                onClick={onLogoutClick}>
-                Logout
-          </button>
-              <Link to="/" className="col s5 brand-logo center white-text" style={{ fontFamily: 'Dancing Script' }}>
-                <i className="material-icons">nightlight_round</i> Stellar Scope
-            </Link>
-            </div>
-
-          </nav>
-        </div>
-        <div className="row">
-          <div className="col s12 center-align">
-            <h4>
-              <b>Hey there,</b> {user.name.split(' ')[0]}
-              <p className="flow-text grey-text text-darken-1">
-                Click on any card to unlock more astrology{' '}
-              </p>
-            </h4>
-
-          </div>
-        </div>
-        <div className="row">
-          <div class="col s4 center-align">
-            <div class="card">
-              <div class="card-image">
-                <img src="images/sample-1.jpg" />
-                <span class="card-title">Daily Astrology</span>
-              </div>
-              <div class="card-content">
-                <p>.</p>
-              </div>
-              <div class="card-action">
-                <a href="#">This is a link</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col s4 center-align">
-            <div class="card">
-              <div class="card-image">
-                <img src="images/sample-1.jpg" />
-                <span class="card-title">Match Making</span>
-              </div>
-              <div class="card-content">
-                <p>.</p>
-              </div>
-              <div class="card-action">
-                <a href="#">This is a link</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col s4 center-align">
-            <div class="card">
-              <div class="card-image">
-                <img src="images/sample-1.jpg" />
-                <span class="card-title">Horoscope</span>
-              </div>
-              <div class="card-content">
-                <p>.</p>
-              </div>
-              <div class="card-action">
-                <a href="#">This is a link</a>
-              </div>
-            </div>
-          </div>
-
-          {astroData && <p>{JSON.stringify(astroData, null, 2)}</p>}
-        </div>
-      </div>
-
-    );
+      const data = await response.json();
+      setAstroData(data)
+    } catch (e) { console.log({ e }) }
   };
 
-  export default Dashboard;
+  useEffect(() => {
+    astrologyAPICall()
+  }, []);
+
+  const onLogoutClick = e => {
+    e.preventDefault();
+
+    logoutUser(props.history)(dispatch);
+  };
+
+  return (
+
+    <div className="container"
+      style={{
+        width: '100%'
+      }}>
+      <div className="navbar">
+        <nav className="z-depth-0">
+          <div className="nav-wrapper grey"
+            style={{
+              background: 'rgb(77,95,136)',
+              background: 'radial-gradient(circle, rgba(77,95,136,1) 0%, rgba(81,39,81,1) 35%, rgba(9,2,13,1) 100%)'
+            }}>
+            <button
+              className="btn medium waves-effect waves-light deep-purple lighten-2"
+              style={
+                {
+                  width: '150px',
+                  borderRadius: '3px',
+                  letterSpacing: '1.5px',
+                  float: 'right',
+                  marginTop: '1%'
+                }
+              }
+              onClick={onLogoutClick}>
+              Logout
+          </button>
+            <Link to="/" className="col s5 brand-logo center white-text" style={{ fontFamily: 'Dancing Script' }}>
+              <i className="material-icons">nightlight_round</i> Stellar Scope
+            </Link>
+          </div>
+
+        </nav>
+      </div>
+      <div className="row">
+        <div className="col s12 center-align">
+          <h4 class="white-text">
+            <b class="white-text">Hey there,</b> {user.name.split(' ')[0]}
+            <p className="flow-text grey-text text-darken-1">
+              Search any planet{' '}
+            </p>
+          </h4>
+        </div>
+      </div>
+      <div className="row">
+        <div class="container">
+          <form id="search-site" action='search' method='get'>
+            <div class="input-group">
+              <div class="input-field">
+                <input id="search" type="search" name='q' />
+                <label class="label-icon" for="search">
+                  <i class="material-icons" >search</i>
+                </label>
+              </div>
+              <button type="submit" class="input-group-addon btn deep-purple lighten-2">search</button>
+
+            </div>
+          </form>
+        </div>
+        {astroData && <p>{JSON.stringify(astroData, null, 2)}</p>}
+
+
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;

@@ -37,8 +37,8 @@ const Login = props => {
         <nav className="z-depth-0">
           <div className="nav-wrapper grey"
             style={{
-              background: 'rgb(238,174,202)',
-              background: 'radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)',          
+              background: 'rgb(77,95,136)',
+              background: 'radial-gradient(circle, rgba(77,95,136,1) 0%, rgba(81,39,81,1) 35%, rgba(9,2,13,1) 100%)'         
             }}>
             <Link to="/" className="col s5 brand-logo center white-text" style={{ fontFamily: 'Dancing Script' }}>
               <i className="material-icons">nightlight_round</i> Stellar Scope
@@ -48,14 +48,14 @@ const Login = props => {
       </div>
       <div className="row" style={{ marginTop: '4rem' }}>
         <div className="col s8 offset-s2">
-          <Link to="/" className="btn-flat waves-effect">
-            <i className="material-icons left">keyboard_backspace</i> Back to home
+          <Link to="/" className="btn-flat waves-effect white-text">
+            <i className="material-icons left white-text">keyboard_backspace</i> Back to home
           </Link>
           <div className="col s12" style={{ paddingLeft: '11.250px' }}>
-            <h4>
-              <b>Login</b> below
+            <h4 class="white-text">
+              <b class= "white-text">Login</b> below
             </h4>
-            <p className="grey-text text-darken-1">
+            <p className="white-text text-darken-1">
               Don't have an account? <Link to="/register">Register</Link>
             </p>
           </div>
@@ -81,7 +81,7 @@ const Login = props => {
 
             <div className="col s12" style={{ paddingLeft: '11.250px' }}>
               <button
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                className="btn btn-large waves-effect waves-light hoverable deep-purple lighten-2"
                 style={{
                   width: '150px',
                   borderRadius: '3px',
