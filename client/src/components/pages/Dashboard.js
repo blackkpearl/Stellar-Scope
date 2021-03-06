@@ -30,71 +30,22 @@ const Dashboard = props => {
       lon: 72.342,
       tzone: 5.5
     };
+
+    var button = document.getElementById('btn1');
+    // when user clicks on button, we want to call function start search
+    button.addEventListener('click', Search);
+    function Search(event) {
+      var userInputValue = document.getElementById('mySearch').value;
+      var urlBase = 'https://json.astrologyapi.com/v1/general_house_report/:planet_name'
+      if (userInputValue === null || userInputValue === '') return;
+      var searchUrl = urlBase + userInputValue;
+      performSearch(searchUrl);
+    }
     try {
 
-      var _selectedPlanet = "Sun"
-      const response = await fetch("https://json.astrologyapi.com/v1/planets/tropical", {
-        method: 'POST', headers: {
-          "Authorization": "Basic " + btoa("615856:4833e72955dc35aaff5f4cfb7e886220"),
-          "Content-Type": 'application/json'
-        },
-        body: JSON.stringify(dataRaw)
-      });
+      
 
-      switch (_selectedPlanet) {
-        case "Sun":
-          _selectedPlanet = response[0];
-          break;
-
-        case "Moon":
-          _selectedPlanet = response[1];
-          break;
-
-        case "Mars":
-          _selectedPlanet = response[2];
-          break;
-
-        case "Mercury":
-          _selectedPlanet = response[3];
-          break;
-
-        case "Jupiter":
-          _selectedPlanet = response[4];
-          break;
-
-        case "Venus":
-          _selectedPlanet = response[5];
-          break;
-
-        case "Saturn":
-          _selectedPlanet = response[6];
-          break;
-
-        case "Uranus":
-          _selectedPlanet = response[7];
-          break;
-
-        case "Neptune":
-          _selectedPlanet = response[8];
-          break;
-
-        case "Pluto":
-          _selectedPlanet = response[9];
-          break;
-
-        default:
-          break;
-      }
-
-      const data = await response.json();
-      setAstroData(data)
-    } catch (e) { console.log({ e }) }
-  };
-
-  useEffect(() => {
-    astrologyAPICall()
-  }, []);
-
+  
   const onLogoutClick = e => {
     e.preventDefault();
 
