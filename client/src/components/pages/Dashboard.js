@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Store } from '../../store';
 import { logoutUser } from '../../store/actions/authActions';
 import API from '../../utils/apiHelper';
@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Dashboard = props => {
   const { state, dispatch } = useContext(Store);
+  const [astroData, setAstroData] = useState();
   const user = state.auth.user;
 
   useEffect(() => {
@@ -13,9 +14,37 @@ const Dashboard = props => {
       props.history.push('/login');
 
     API.getUser()
-    .then(res => console.log({ res }))
-    .catch(err => console.log({ err }));
-  }, [ state, props ]);
+      .then(res => console.log({ res }))
+      .catch(err => console.log({ err }));
+  }, [state, props]);
+
+  const astrologyAPICall = async () => {
+    const dataRaw = {
+      day: 12,
+      month: 3,
+      year: 1992,
+      hour: 2,
+      min: 23,
+      lat: 19.132,
+      lon: 72.342,
+      tzone: 5.5
+    };
+    try {
+      const response = await fetch("https://json.astrologyapi.com/v1/planets/tropical", {
+        method: 'POST', headers: {
+          "Authorization": "Basic " + btoa("615856:4833e72955dc35aaff5f4cfb7e886220"),
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(dataRaw)
+      });
+      const data = await response.json();
+      setAstroData(data)
+    } catch (e) { console.log({ e }) }
+  };
+
+  useEffect(() => {
+    astrologyAPICall()
+  }, []);
 
   const onLogoutClick = e => {
     e.preventDefault();
@@ -24,9 +53,9 @@ const Dashboard = props => {
   };
 
   return (
-    
+
     <div className="container"
-      style= {{
+      style={{
         width: '100%'
       }}>
       <div className="navbar">
@@ -36,24 +65,24 @@ const Dashboard = props => {
               background: 'rgb(238,174,202)',
               background: 'radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)'
             }}>
-          <button
-            className="btn btn-large waves-effect waves-light grey lighten-1"
-            style={
-              {
-                width: '150px',
-                borderRadius: '3px',
-                letterSpacing: '1.5px',
-                float: 'right',
+            <button
+              className="btn btn-large waves-effect waves-light grey lighten-1"
+              style={
+                {
+                  width: '150px',
+                  borderRadius: '3px',
+                  letterSpacing: '1.5px',
+                  float: 'right',
+                }
               }
-            }
-            onClick={onLogoutClick}>
-            Logout
+              onClick={onLogoutClick}>
+              Logout
           </button>
             <Link to="/" className="col s5 brand-logo center white-text" style={{ fontFamily: 'Dancing Script' }}>
               <i className="material-icons">nightlight_round</i> Stellar Scope
             </Link>
           </div>
-          
+
         </nav>
       </div>
       <div className="row">
@@ -71,7 +100,7 @@ const Dashboard = props => {
         <div class="col s4 center-align">
           <div class="card">
             <div class="card-image">
-              <img src="images/sample-1.jpg"/>
+              <img src="images/sample-1.jpg" />
               <span class="card-title">Daily Astrology</span>
             </div>
             <div class="card-content">
@@ -86,7 +115,7 @@ const Dashboard = props => {
         <div class="col s4 center-align">
           <div class="card">
             <div class="card-image">
-              <img src="images/sample-1.jpg"/>
+              <img src="images/sample-1.jpg" />
               <span class="card-title">Match Making</span>
             </div>
             <div class="card-content">
@@ -101,7 +130,7 @@ const Dashboard = props => {
         <div class="col s4 center-align">
           <div class="card">
             <div class="card-image">
-              <img src="images/sample-1.jpg"/>
+              <img src="images/sample-1.jpg" />
               <span class="card-title">Horoscope</span>
             </div>
             <div class="card-content">
@@ -112,7 +141,8 @@ const Dashboard = props => {
             </div>
           </div>
         </div>
-        
+
+        {astroData && <p>{JSON.stringify(astroData, null, 2)}</p>}
       </div>
     </div>
 
