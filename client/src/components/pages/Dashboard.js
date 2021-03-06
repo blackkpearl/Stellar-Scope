@@ -33,7 +33,7 @@ const Dashboard = props => {
     try {
 
       var _selectedPlanet = "Sun"
-      const response = await fetch("https://json.astrologyapi.com/v1/planets/tropical", {
+      const response = await fetch("https://json.astrologyapi.com/v1/general_house_report/:planet_name", {
         method: 'POST', headers: {
           "Authorization": "Basic " + btoa("615856:4833e72955dc35aaff5f4cfb7e886220"),
           "Content-Type": 'application/json'
