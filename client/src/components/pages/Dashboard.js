@@ -1,12 +1,14 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState, useRef } from 'react';
 import { Store } from '../../store';
 import { logoutUser } from '../../store/actions/authActions';
 import API from '../../utils/apiHelper';
 import { Link } from 'react-router-dom';
+// import e from 'express';
 
 const Dashboard = props => {
   const { state, dispatch } = useContext(Store);
   const [astroData, setAstroData] = useState();
+  const searchRef = useRef();
 
   const user = state.auth.user;
 
@@ -19,6 +21,7 @@ const Dashboard = props => {
       .catch(err => console.log({ err }));
   }, [state, props]);
 
+<<<<<<< HEAD
   const astrologyAPICall = async () => {
     
     };
@@ -37,6 +40,35 @@ const Dashboard = props => {
 
       var _selectedPlanet = (userInputValue)
       const response = await fetch("https://json.astrologyapi.com/v1/general_house_report/:userInputValue", {
+=======
+  const astrologyAPICall = async (e) => {
+    e.preventDefault()
+    const dataRaw = {
+      day: 12,
+      month: 3,
+      year: 1992,
+      hour: 2,
+      min: 23,
+      lat: 19.132,
+      lon: 72.342,
+      tzone: 5.5
+    };
+
+    // var button = document.getElementById('btn1');
+    // // when user clicks on button, we want to call function start search
+    // button.addEventListener('click', Search);
+    // function Search(event) {
+    //   var userInputValue = document.getElementById('mySearch').value;
+    //   var urlBase = 'https://json.astrologyapi.com/v1/general_house_report/:planet_name'
+    //   if (userInputValue === null || userInputValue === '') return;
+    //   var searchUrl = urlBase + userInputValue;
+    //   performSearch(searchUrl);
+    // }
+    try {
+
+      // var _selectedPlanet = ""
+      const response = await fetch("https://json.astrologyapi.com/v1/general_house_report/" + searchRef.current.value, {
+>>>>>>> 02bfd11b8839cf389db3d65d678bfcce9474017f
         method: 'POST', headers: {
           "Authorization": "Basic " + btoa("615856:4833e72955dc35aaff5f4cfb7e886220"),
           "Content-Type": 'application/json'
@@ -44,14 +76,23 @@ const Dashboard = props => {
         body: JSON.stringify(dataRaw)
       });
 
+<<<<<<< HEAD
   
+=======
+      const data = await response.json();
+      console.log(data)
+      setAstroData(data)
+    } catch (e) { console.log({ e }) }
+  };
+
+>>>>>>> 02bfd11b8839cf389db3d65d678bfcce9474017f
   const onLogoutClick = e => {
     e.preventDefault();
 
     logoutUser(props.history)(dispatch);
   };
 
-  
+
   return (
 
     <div className="container"
@@ -101,16 +142,21 @@ const Dashboard = props => {
           <form id="search-site" action='search' method='get'>
             <div class="input-group">
               <div class="input-field">
-                <input id="search" type="search" name='q' />
+                <input id="search" type="search" name='q' ref={searchRef} />
                 <label class="label-icon" for="search">
                   <i class="material-icons" >search</i>
                 </label>
               </div>
+<<<<<<< HEAD
               <button type="submit" class="input-group-addon btn deep-purple lighten-2" 
               onClick={astrologyAPICall}>
                 search
               </button>
 
+=======
+              <button type="submit" class="input-group-addon btn deep-purple lighten-2"
+                onClick={astrologyAPICall}>search</button>
+>>>>>>> 02bfd11b8839cf389db3d65d678bfcce9474017f
             </div>
           </form>
         </div>
