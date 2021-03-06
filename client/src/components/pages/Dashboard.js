@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState} from 'react';
 import { Store } from '../../store';
 import { logoutUser } from '../../store/actions/authActions';
 import API from '../../utils/apiHelper';
@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 
 const Dashboard = props => {
   const { state, dispatch } = useContext(Store);
+  const [astroData, setAstroData] = useState();
+
   const user = state.auth.user;
 
   useEffect(() => {
@@ -16,6 +18,35 @@ const Dashboard = props => {
     .then(res => console.log({ res }))
     .catch(err => console.log({ err }));
   }, [ state, props ]);
+
+  const astrologyAPICall = async () => {
+    const dataRaw = {
+      day: 12,
+      month: 3,
+      year: 1992,
+      hour: 2,
+      min: 23,
+      lat: 19.132,
+      lon: 72.342,
+      tzone: 5.5
+    };
+    try {
+      const response = await fetch("https://json.astrologyapi.com/v1/planets/tropical", {
+        method: 'POST', headers: {
+          "Authorization": "Basic " + btoa("615856:4833e72955dc35aaff5f4cfb7e886220"),
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(dataRaw)
+      });
+      const data = await response.json();
+      setAstroData(data)
+    } catch (e) { console.log({ e }) }
+  };
+
+  useEffect(() => {
+    astrologyAPICall()
+  }, []);
+
 
   const onLogoutClick = e => {
     e.preventDefault();
@@ -78,9 +109,13 @@ const Dashboard = props => {
                   </label>
               </div>
                 <button type="submit" class="input-group-addon btn deep-purple lighten-2">search</button>
+                
             </div>
            </form>
         </div>
+        {astroData && <p>{JSON.stringify(astroData, null, 2)}</p>}
+
+
       </div>
     </div>
   );
