@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState} from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Store } from '../../store';
 import { logoutUser } from '../../store/actions/authActions';
 import API from '../../utils/apiHelper';
@@ -15,9 +15,9 @@ const Dashboard = props => {
       props.history.push('/login');
 
     API.getUser()
-    .then(res => console.log({ res }))
-    .catch(err => console.log({ err }));
-  }, [ state, props ]);
+      .then(res => console.log({ res }))
+      .catch(err => console.log({ err }));
+  }, [state, props]);
 
   const astrologyAPICall = async () => {
     const dataRaw = {
@@ -31,6 +31,8 @@ const Dashboard = props => {
       tzone: 5.5
     };
     try {
+
+      var _selectedPlanet = "Sun"
       const response = await fetch("https://json.astrologyapi.com/v1/planets/tropical", {
         method: 'POST', headers: {
           "Authorization": "Basic " + btoa("615856:4833e72955dc35aaff5f4cfb7e886220"),
@@ -38,6 +40,53 @@ const Dashboard = props => {
         },
         body: JSON.stringify(dataRaw)
       });
+      // alert(JSON.stringify((response)
+
+      switch (_selectedPlanet) {
+        case "Sun":
+          _selectedPlanet = response[0];
+          break;
+
+        case "Moon":
+          _selectedPlanet = response[1];
+          break;
+
+        case "Mars":
+          _selectedPlanet = response[2];
+          break;
+
+        case "Mercury":
+          _selectedPlanet = response[3];
+          break;
+
+        case "Jupiter":
+          _selectedPlanet = response[4];
+          break;
+
+        case "Venus":
+          _selectedPlanet = response[5];
+          break;
+
+        case "Saturn":
+          _selectedPlanet = response[6];
+          break;
+
+        case "Uranus":
+          _selectedPlanet = response[7];
+          break;
+
+        case "Neptune":
+          _selectedPlanet = response[8];
+          break;
+
+        case "Pluto":
+          _selectedPlanet = response[9];
+          break;
+
+        default:
+          break;
+      }
+
       const data = await response.json();
       setAstroData(data)
     } catch (e) { console.log({ e }) }
@@ -47,7 +96,6 @@ const Dashboard = props => {
     astrologyAPICall()
   }, []);
 
-
   const onLogoutClick = e => {
     e.preventDefault();
 
@@ -56,9 +104,9 @@ const Dashboard = props => {
 
   
   return (
-    
+
     <div className="container"
-      style= {{
+      style={{
         width: '100%'
       }}>
       <div className="navbar">
@@ -68,25 +116,25 @@ const Dashboard = props => {
               background: 'rgb(77,95,136)',
               background: 'radial-gradient(circle, rgba(77,95,136,1) 0%, rgba(81,39,81,1) 35%, rgba(9,2,13,1) 100%)'
             }}>
-          <button
-            className="btn medium waves-effect waves-light deep-purple lighten-2"
-            style={
-              {
-                width: '150px',
-                borderRadius: '3px',
-                letterSpacing: '1.5px',
-                float: 'right',
-                marginTop: '1%'
+            <button
+              className="btn medium waves-effect waves-light deep-purple lighten-2"
+              style={
+                {
+                  width: '150px',
+                  borderRadius: '3px',
+                  letterSpacing: '1.5px',
+                  float: 'right',
+                  marginTop: '1%'
+                }
               }
-            }
-            onClick={onLogoutClick}>
-            Logout
+              onClick={onLogoutClick}>
+              Logout
           </button>
             <Link to="/" className="col s5 brand-logo center white-text" style={{ fontFamily: 'Dancing Script' }}>
               <i className="material-icons">nightlight_round</i> Stellar Scope
             </Link>
           </div>
-          
+
         </nav>
       </div>
       <div className="row">
@@ -101,18 +149,18 @@ const Dashboard = props => {
       </div>
       <div className="row">
         <div class="container">
-          <form id="search-site"  action='search' method='get'>
+          <form id="search-site" action='search' method='get'>
             <div class="input-group">
               <div class="input-field">
-                <input id="search" type="search" name='q'/>
-                  <label class="label-icon" for="search">
-                    <i class="material-icons" >search</i>
-                  </label>
+                <input id="search" type="search" name='q' />
+                <label class="label-icon" for="search">
+                  <i class="material-icons" >search</i>
+                </label>
               </div>
-                <button type="submit" class="input-group-addon btn deep-purple lighten-2">search</button>
-                
+              <button type="submit" class="input-group-addon btn deep-purple lighten-2">search</button>
+
             </div>
-           </form>
+          </form>
         </div>
         {astroData && <p>{JSON.stringify(astroData, null, 2)}</p>}
 
