@@ -40,7 +40,6 @@ const Dashboard = props => {
         },
         body: JSON.stringify(dataRaw)
       });
-      // alert(JSON.stringify((response)
 
       switch (_selectedPlanet) {
         case "Sun":
