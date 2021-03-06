@@ -21,26 +21,6 @@ const Dashboard = props => {
       .catch(err => console.log({ err }));
   }, [state, props]);
 
-<<<<<<< HEAD
-  const astrologyAPICall = async () => {
-    
-    };
-
-    var button = document.getElementById('btn1');
-    // when user clicks on button, we want to call function start search
-    button.addEventListener('click', Search);
-    function Search(event) {
-      var userInputValue = document.getElementById('mySearch').value;
-      var urlBase = 'https://json.astrologyapi.com/v1/general_house_report/:planet_nameg'
-      if (userInputValue === null || userInputValue === '') return;
-      var searchUrl = urlBase + userInputValue;
-      performSearch(searchUrl);
-    }
-    try {
-
-      var _selectedPlanet = (userInputValue)
-      const response = await fetch("https://json.astrologyapi.com/v1/general_house_report/:userInputValue", {
-=======
   const astrologyAPICall = async (e) => {
     e.preventDefault()
     const dataRaw = {
@@ -68,7 +48,6 @@ const Dashboard = props => {
 
       // var _selectedPlanet = ""
       const response = await fetch("https://json.astrologyapi.com/v1/general_house_report/" + searchRef.current.value, {
->>>>>>> 02bfd11b8839cf389db3d65d678bfcce9474017f
         method: 'POST', headers: {
           "Authorization": "Basic " + btoa("615856:4833e72955dc35aaff5f4cfb7e886220"),
           "Content-Type": 'application/json'
@@ -76,16 +55,12 @@ const Dashboard = props => {
         body: JSON.stringify(dataRaw)
       });
 
-<<<<<<< HEAD
-  
-=======
       const data = await response.json();
       console.log(data)
       setAstroData(data)
     } catch (e) { console.log({ e }) }
   };
 
->>>>>>> 02bfd11b8839cf389db3d65d678bfcce9474017f
   const onLogoutClick = e => {
     e.preventDefault();
 
@@ -147,20 +122,12 @@ const Dashboard = props => {
                   <i class="material-icons" >search</i>
                 </label>
               </div>
-<<<<<<< HEAD
-              <button type="submit" class="input-group-addon btn deep-purple lighten-2" 
-              onClick={astrologyAPICall}>
-                search
-              </button>
-
-=======
               <button type="submit" class="input-group-addon btn deep-purple lighten-2"
                 onClick={astrologyAPICall}>search</button>
->>>>>>> 02bfd11b8839cf389db3d65d678bfcce9474017f
             </div>
           </form>
         </div>
-        {astroData && <p>{JSON.stringify(astroData, null, 2)}</p>}
+        {astroData && <p class="white-text">{JSON.stringify(astroData, null, 2)}</p>}
 
 
       </div>
