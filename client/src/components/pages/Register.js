@@ -59,32 +59,32 @@ const Register = props => {
             <h4 class="white-text">
               <b class="white-text">Register</b> below
             </h4>
-            <p className="grey-text text-darken-1">
+            <p className="white-text text-darken-1">
               Already have an account? <Link to="/login">Login</Link>
             </p>
           </div>
           <form noValidate onSubmit={onSubmit}>
             <div className="input-field col s12">
               <input ref={nameRef} error={errors.name} name="name" type="text"
-                     className={classnames('', { invalid: errors.name })} />
+                     className={classnames('', { invalid: errors.name }),"white-text" } />
               <label htmlFor="name">Name</label>
               <span className="red-text">{errors.name}</span>
             </div>
             <div className="input-field col s12">
               <input ref={emailRef} error={errors.email} name="email" type="email"
-                     className={classnames('', { invalid: errors.email })} />
+                     className={classnames('', { invalid: errors.email }),"white-text"} />
               <label htmlFor="email">Email</label>
               <span className="red-text">{errors.email}</span>
             </div>
             <div className="input-field col s12">
               <input ref={passwordRef} error={errors.password} name="password" type="password"
-                     className={classnames('', { invalid: errors.password })} />
+                     className={classnames('', { invalid: errors.password }), "white-text"} />
               <label htmlFor="password">Password</label>
               <span className="red-text">{errors.password}</span>
             </div>
             <div className="input-field col s12">
               <input ref={password2Ref} error={errors.password2} name="password2" type="password"
-                     className={classnames('', { invalid: errors.password2 })} />
+                     className={classnames('', { invalid: errors.password2 }), "white-text"} />
               <label htmlFor="password2">Confirm Password</label>
               <span className="red-text">{errors.password2}</span>
             </div>
