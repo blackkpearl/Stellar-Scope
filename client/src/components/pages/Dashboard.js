@@ -68,12 +68,19 @@ const Dashboard = props => {
         </div>
       </div>
       <div className="row">
-        <div class="input-field col s3 center-align white-text"></div>  
-        <div class="input-field col s6 center-align white-text">
-          <i class="white-text material-icons prefix">search</i>
-          <input type="text" placeholder="search" id="autocomplete-input" class="autocomplete white-text"></input>
+        <div class="container">
+          <form id="search-site"  action='search' method='get'>
+            <div class="input-group">
+              <div class="input-field">
+                <input id="search" type="search" name='q'/>
+                  <label class="label-icon" for="search">
+                    <i class="material-icons" >search</i>
+                  </label>
+              </div>
+                <button type="submit" class="input-group-addon btn deep-purple lighten-2">search</button>
+            </div>
+           </form>
         </div>
-        <div class="input-field col s16 center-align white-text"></div>
       </div>
     </div>
   );
