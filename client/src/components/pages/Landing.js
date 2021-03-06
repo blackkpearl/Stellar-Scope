@@ -42,7 +42,7 @@ const Landing = props => {
             Welcome to {' '} <span style={{ fontFamily: 'Dancing Script' }}>Stellar Scope</span>!
           </h4>
           <p className="flow-text white-text text-darken-1">
-            Learn more about astrology based on the given planets
+            Learn more about astrology based on the planets
           </p>
           <br />
           <div className="row vertical-center">
